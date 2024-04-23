@@ -1,5 +1,7 @@
 import EmailPassword from 'supertokens-node/recipe/emailpassword/index.js';
 import Session from "supertokens-node/recipe/session/index.js";
+import Dashboard from "supertokens-node/recipe/dashboard/index.js";
+
 
 const superTokenConfig = {
     supertokens: {
@@ -11,7 +13,8 @@ const superTokenConfig = {
         appName: "Supertoken Learning",
         websiteDomain: "http://localhost:4200"
     },
-    recipeList: [EmailPassword.init({
+    recipeList: [
+        EmailPassword.init({
         override: {
             functions: (originalImplementation) => {
                 return {
@@ -42,7 +45,10 @@ const superTokenConfig = {
                 }
             }
         }
-    }), Session.init()]
+    }),
+    Session.init(),
+    Dashboard.init(),
+    ]
 };
 
 export {
