@@ -1,0 +1,4 @@
+core_version: 9.0.2
+plugin_interface_version: 6.1.0
+plugin_version: 7.0.1
+plugin_name: postgresql
