@@ -10,7 +10,6 @@ import { signUp } from 'supertokens-web-js/recipe/emailpassword';
 export class SignupComponent {
 
   profileForm = new FormGroup({
-    name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
   });

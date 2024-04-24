@@ -35,7 +35,7 @@ export class AppComponent {
     if (await Session.doesSessionExist()) {
       this.router.navigate(['/homepage']);
     } else {
-      this.router.navigate(['/auth/login']);
+      // this.router.navigate(['/auth/login']);
     }
   }
 }
