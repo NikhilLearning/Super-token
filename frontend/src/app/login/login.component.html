@@ -22,5 +22,14 @@
 
 <h4>API Data</h4>
 
-<p>Message: {{apiData.message}}</p>
-<p>Api response time: {{apiData.timestamp}}</p>
+<p>Message: {{apiData?.message}}</p>
+<p>Api response time: {{apiData?.timestamp}}</p>
+
+<hr>
+
+<button type="button" (click)="getDataWithout()">API DATA WITHOUT VERIFICATION</button>
+
+<h4>API Data</h4>
+
+<p>Message: {{apiDataWithout?.message}}</p>
+<p>Api response time: {{apiDataWithout?.timestamp}}</p>

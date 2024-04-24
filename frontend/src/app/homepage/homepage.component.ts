@@ -12,6 +12,7 @@ export class HomepageComponent {
 
   userId: string = '';
   apiData: any;
+  apiDataWithout: any;
 
   constructor(
     private router: Router,
@@ -31,8 +32,20 @@ export class HomepageComponent {
       });
   }
 
+  getDataWithout() {
+    this.http.get('http://localhost:3000/getDataWithoutVerification')
+      .subscribe((data) => {
+
+        this.apiDataWithout = data;
+
+      },(error)=>{
+        alert(error.message)
+      });
+  }
+
   async logout () {
-    await Session.signOut(); 
+    
+    await Session.signOut();
     this.router.navigate(['/auth/login']);
   }
 
@@ -45,6 +58,7 @@ export class HomepageComponent {
       this.router.navigate(['homepage']);
     }
     else {
+      this.logout();
       this.router.navigate(['auth/login']);
     }
   }

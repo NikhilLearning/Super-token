@@ -13,6 +13,7 @@ import Session from 'supertokens-web-js/recipe/session';
 export class LoginComponent {
 
   apiData: any;
+  apiDataWithout: any;
 
   loginForm = new FormGroup({
     name: new FormControl(''),
@@ -86,6 +87,17 @@ export class LoginComponent {
         alert(error.message)
       }
     );
+  }
+
+  getDataWithout() {
+    this.http.get('http://localhost:3000/getDataWithoutVerification')
+      .subscribe((data) => {
+
+        this.apiDataWithout = data;
+
+      },(error)=>{
+        alert(error.message)
+      });
   }
 
   async logout () {

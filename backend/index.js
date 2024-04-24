@@ -33,6 +33,17 @@ app.get('/getData', verifySession(), async(req, res)=> {
 
 });
 
+app.get('/getDataWithoutVerification', async(req, res)=> {
+
+  const data = {
+    message: 'This is mock data from the dummy API without verification',
+    timestamp: new Date()
+  };
+
+  res.json(data);
+
+});
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
