@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import Session from 'supertokens-web-js/recipe/session';
 })
 export class LoginComponent {
 
+  apiData: any;
 
   loginForm = new FormGroup({
     name: new FormControl(''),
@@ -18,7 +20,7 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
     this.isLoggedIn();
   }
 
@@ -70,6 +72,20 @@ export class LoginComponent {
         window.alert("Oops! Something went wrong.");
       }
     }
+  }
+
+  getData() {
+    this.http.get('http://localhost:3000/getData')
+      .subscribe((data) => {
+
+        this.apiData = data;
+
+      },
+      (error) => {
+        // Handle errors here
+        alert(error.message)
+      }
+    );
   }
 
   async logout () {

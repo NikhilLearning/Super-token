@@ -22,6 +22,17 @@ app.use(middleware());
 
 const PORT = process.env.PORT || 3000;
 
+app.get('/getData', verifySession(), async(req, res)=> {
+
+  const data = {
+    message: 'This is mock data from the dummy API',
+    timestamp: new Date()
+  };
+
+  res.json(data);
+
+});
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

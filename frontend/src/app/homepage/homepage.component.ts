@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Session from 'supertokens-web-js/recipe/session';
@@ -10,11 +11,24 @@ import Session from 'supertokens-web-js/recipe/session';
 export class HomepageComponent {
 
   userId: string = '';
+  apiData: any;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ){
     this.isLoggedIn()
+  }
+
+  getData() {
+    this.http.get('http://localhost:3000/getData')
+      .subscribe((data) => {
+
+        this.apiData = data;
+
+      },(error)=>{
+        alert(error.message)
+      });
   }
 
   async logout () {

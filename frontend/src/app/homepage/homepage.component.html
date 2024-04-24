@@ -7,3 +7,14 @@ Hello : <b>{{userId}}</b>
 <br><br>
 
 Welcome Home Page
+
+
+
+<br><br>
+
+<button type="button" (click)="getData()">Call Custom API</button>
+
+<h4>API Data</h4>
+
+<p>Message: {{apiData.message}}</p>
+<p>Api response time: {{apiData.timestamp}}</p>
