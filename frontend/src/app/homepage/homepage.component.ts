@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import Session from 'supertokens-web-js/recipe/session';
 
 @Component({
@@ -8,9 +9,22 @@ import Session from 'supertokens-web-js/recipe/session';
 })
 export class HomepageComponent {
 
+  constructor(
+    private router: Router
+  ){this.isLoggedIn()}
+
   async logout () {
     await Session.signOut(); 
-    window.location.href = "/homepage"; // or to wherever your logic page is
+    this.router.navigate(['/auth/login']);
+  }
+
+  async isLoggedIn() {   
+     
+    if (await Session.doesSessionExist()) {
+      this.router.navigate(['homepage']);
+    } else {
+      this.router.navigate(['auth/login']);
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { signUp } from 'supertokens-web-js/recipe/emailpassword';
 
 @Component({
@@ -13,6 +14,10 @@ export class SignupComponent {
     email: new FormControl(''),
     password: new FormControl(''),
   });
+
+  constructor(private router: Router) {
+    
+  }
 
 
   async onSubmit() {
@@ -53,7 +58,7 @@ export class SignupComponent {
         alert(response.reason)
       }
       else {
-        alert('sUCCESS')
+        this.router.navigate(['/homepage']);
       }
     } 
     catch (err: any) {

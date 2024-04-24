@@ -26,16 +26,6 @@ export class AppComponent {
   title = 'frontend';
 
   constructor(
-    private router: Router
   ) {
-    this.isLoggedIn();
-  }
-
-  async isLoggedIn() {    
-    if (await Session.doesSessionExist()) {
-      this.router.navigate(['/homepage']);
-    } else {
-      // this.router.navigate(['/auth/login']);
-    }
   }
 }

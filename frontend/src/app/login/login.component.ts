@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { signIn } from 'supertokens-web-js/recipe/emailpassword';
+import Session from 'supertokens-web-js/recipe/session';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,10 @@ export class LoginComponent {
     email: new FormControl(''),
     password: new FormControl(''),
   });
+
+  constructor(private router: Router) {
+    this.isLoggedIn();
+  }
 
 
   async onSubmit() {
@@ -52,7 +58,7 @@ export class LoginComponent {
         window.alert(response.reason)
       }
       else {
-        window.location.href = "/homepage"
+        this.router.navigate(['/homepage']);
       }
     } 
     catch (err: any) {
@@ -65,4 +71,19 @@ export class LoginComponent {
       }
     }
   }
+
+  async logout () {
+    await Session.signOut(); 
+    this.router.navigate(['/auth/login']);
+  }
+  
+  async isLoggedIn() {   
+     
+    if (await Session.doesSessionExist()) {
+      this.router.navigate(['/homepage']);
+    } else {
+      this.router.navigate(['auth/login']);
+    }
+  }
+
 }
