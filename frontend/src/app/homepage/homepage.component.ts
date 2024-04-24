@@ -9,9 +9,13 @@ import Session from 'supertokens-web-js/recipe/session';
 })
 export class HomepageComponent {
 
+  userId: string = '';
+
   constructor(
     private router: Router
-  ){this.isLoggedIn()}
+  ){
+    this.isLoggedIn()
+  }
 
   async logout () {
     await Session.signOut(); 
@@ -19,10 +23,14 @@ export class HomepageComponent {
   }
 
   async isLoggedIn() {   
-     
+    
+
     if (await Session.doesSessionExist()) {
+      
+      this.userId = await Session.getUserId();
       this.router.navigate(['homepage']);
-    } else {
+    }
+    else {
       this.router.navigate(['auth/login']);
     }
   }
