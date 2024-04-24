@@ -1,0 +1,17 @@
+<h3>Sign Up Form</h3>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email">
+
+    <br><br>
+
+    <label for="password">Password: </label>
+    <input id="password" type="text" formControlName="password">
+
+    <br><br>
+
+    <button type="submit">Submit</button>
+
+</form>
