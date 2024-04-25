@@ -99,11 +99,6 @@ export class LoginComponent {
         alert(error.message)
       });
   }
-
-  async logout () {
-    await Session.signOut(); 
-    this.router.navigate(['/auth/login']);
-  }
   
   async isLoggedIn() {   
      
